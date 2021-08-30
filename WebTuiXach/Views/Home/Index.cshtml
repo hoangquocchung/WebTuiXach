@@ -1,0 +1,298 @@
+﻿@model List<Data.FE.Product>
+@{
+    Layout = "~/Views/Shared/Intro.cshtml";
+    var menu = (List<Data.FE.MenuUser>)ViewBag.menu;
+}
+
+<main>
+    <section class="qc__intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="qc__video">
+                        <div class="wImage">
+                            <div class="image">
+                                <img src="/Style/Client/image/banner1.jpg" alt="">
+                            </div>
+                            <div class="loader_video">
+                                <div class="face face1">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="face face2">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                            <a data-fancybox="gallery" href="/Style/Client/image/146078483_799936877227354_7749943113808330457_n.mp4" class="btn__play"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="block_text_intro">
+                        <div class="qc__title">
+                            <span>chào mừng bạn đến với</span>
+                            <h2 class="title">She Accessories</h2>
+                        </div>
+                        <article class="qc__text_intro">
+                            <p>She Accessories là shop tiêu chuẩn nhằm đảm bảo phục vụ cho tất vcar mọi người tiêu dùng. Trao niềm tin nhận giá trị đích thực</p>
+                        </article>
+                        <div class="intro_other"></div>
+                        <a href="" class="qc__btn__view">
+                            <span></span>
+                            xem thêm
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="qc__product">
+        <div class="container">
+            <div class="qc__new__product">
+                <div class="qc__title">
+                    <h2 class="title">Sản phẩm mới nhất</h2>
+                    <span>Nàng thời thượng không thể bỏ lỡ những mẫu túi giày hợp mốt</span>
+                </div>
+                <div class="owl-carousel owl-theme product" id="my_carousel2">
+                    @foreach (var item in Model.OrderByDescending(x => x.CreatedDate))
+                    {
+                        foreach (var Item in menu.Where(x => x.ID == item.MainMenu))
+                        {
+                            <div class="item">
+                                <div class="qc__block-product">
+                                    <div class="qc__image_block">
+                                        <div class="wImage">
+                                            <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="image">
+                                                <img src="@item.Images" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="qc__btn_ct">
+                                            @if (item.Quantity == 0 || item.Quantity == null)
+                                            {
+
+                                                <a href="#" style="color:#fff;text-align:center;padding:5px;display:block;">Hết hàng</a>
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="btn_ct">mua ngay</a>
+
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="qc__detail">
+                                        <a href="">@item.Name</a>
+                                        <div class="qc__price" style="display:flex">
+                                            @if (item.PromotionPrice == null)
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+
+                                            }
+                                            else
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                                <span style="text-decoration:line-through;color:red;margin-left:20px">@(item.PromotionPrice.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <a href="/san-pham" class="qc__btn__view">
+                <span></span>
+                xem thêm
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+    </section>
+    <section class="qc__product">
+        <div class="container">
+            <div class="qc__sell__product">
+                <div class="qc__title">
+                    <h2 class="title">SẢN PHẨM KHUYẾN MÃI</h2>
+                    <span>Nàng thời thượng không thể bỏ lỡ những mẫu túi giày hợp mốt</span>
+                </div>
+                <div class="row product">
+                    @foreach (var item in Model.Where(x => x.PromotionPrice != null).Take(4))
+                    {
+                        foreach (var Item in menu.Where(x => x.ID == item.MainMenu))
+                        {
+                            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                                <div class="qc__block-product">
+                                    <div class="qc__image_block">
+                                        <div class="wImage">
+                                            <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="image">
+                                                <img src="@item.Images" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="qc__btn_ct">
+                                            @if (item.Quantity == 0 || item.Quantity == null)
+                                            {
+
+                                                <a href="#" style="color:#fff;text-align:center;padding:5px;display:block;">Hết hàng</a>
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="btn_ct">mua ngay</a>
+
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="qc__detail">
+                                        <a href="">@item.Name</a>
+                                        <div class="qc__price" style="display:flex">
+                                            @if (item.PromotionPrice == null)
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+
+                                            }
+                                            else
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                                <span style="text-decoration:line-through;color:red;margin-left:20px">@(item.PromotionPrice.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <a href="/san-pham-khuyen-mai" class="qc__btn__view">
+                <span></span>
+                xem thêm
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </section>
+    <section class="qc__product">
+        <div class="container">
+            <div class="qc__sell__product">
+                <div class="qc__title">
+                    <h2 class="title">SẢN PHẨM nổi bật</h2>
+                    <span>Nàng thời thượng không thể bỏ lỡ những mẫu túi giày hợp mốt</span>
+                </div>
+                <div class="row product">
+                    @foreach (var item in Model.Where(x => x.IsHome == true).Take(4))
+                    {
+                        foreach (var Item in menu.Where(x => x.ID == item.MainMenu))
+                        {
+                            <div class="col-12 col-lg-3">
+                                <div class="qc__block-product">
+                                    <div class="qc__image_block">
+                                        <div class="wImage">
+                                            <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="image">
+                                                <img src="@item.Images" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="qc__btn_ct">
+                                            @if (item.Quantity == 0 || item.Quantity == null)
+                                            {
+                                                <a href="#" style="color:#fff;text-align:center;padding:5px;display:block;">Hết hàng</a>
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="btn_ct">mua ngay</a>
+
+                                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="qc__detail">
+                                        <a href="">@item.Name</a>
+                                        <div class="qc__price" style="display:flex">
+                                            @if (item.PromotionPrice == null)
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+
+                                            }
+                                            else
+                                            {
+                                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                                <span style="text-decoration:line-through;color:red;margin-left:20px">@(item.PromotionPrice.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+            <a href="/san-pham-noi-bat" class="qc__btn__view">
+                <span></span>
+                xem thêm
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </section>
+
+    <section class="qc__QandA">
+        <div class="container">
+            <div class="row c">
+                <div class="col-12 col-md-6">
+                    <div class="qc__qanda">
+                        <div class="qc__title">
+                            <h2 class="title">Hỏi đáp chuyên gia</h2>
+
+                        </div>
+                        <form action="" class="form_qanda">
+                            <input type="text" placeholder="Họ & Tên" class="text_name_qa" />
+                            <input type="text" placeholder="Số điện thoại" class="text_phone_qa" />
+                            <input type="text" placeholder="Email..." class="text_email_qa" />
+                            <textarea class="text_ghichu"></textarea>
+                            <a href="#" id="qc__send_require" class="qc__btn__view">
+                                <span></span>
+                                gửi yêu cầu
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="qc__qa_phone">
+                        <div class="wImage">
+                            <div class="image">
+                                <img src="/Style/Client/image/8901618902011.gif" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    @{ Html.RenderAction("Logotrademark", "Home");}
+</main>
+
+
+

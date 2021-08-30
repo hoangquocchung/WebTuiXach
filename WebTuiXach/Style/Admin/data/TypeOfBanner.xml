@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+    <Item id="1" value="Banner" type="district" name="banner" />
+    <Item id="2" value="Logo thương hiệu" type="district" name="Logo thương hiệu" />
+</Root>

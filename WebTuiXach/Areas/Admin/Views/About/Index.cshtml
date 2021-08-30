@@ -1,0 +1,12 @@
+﻿@model Data.FE.Contact
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-bottom:30px;border-bottom:1px solid #808080">Nội dung Giới thiệu</h2>
+
+<div style="width:80%;margin: auto">@Html.Raw(Model.Content)</div>
+
+<a href="/Admin/About/Edit/@Model.ID"class="btn btn-danger wrn-btn" style="margin-left:50px"> Sửa</a>
+

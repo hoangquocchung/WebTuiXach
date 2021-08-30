@@ -1,0 +1,70 @@
+﻿@model List<Data.FE.Product>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var menu = (List<Data.FE.MenuUser>)ViewBag.menu;
+}
+<div class="banner">
+    <img src="/Style/Client/image/banner1.jpg" />
+
+    <div class="container">
+        <ul class="qc_link">
+            <li><a href="/trang-chu">Home</a></li>
+            <li><a href="#">Kết Quả tìm kiếm: @ViewBag.Keyword</a></li>
+        </ul>
+    </div>
+</div>
+<section class="qc__listproduct">
+    <div class="container">
+        <div class="row listProduct">
+            @foreach (var item in Model)
+            {
+                foreach(var Item in menu.Where(x => x.ID == item.MainMenu)){
+            <div class="col-12 col-md-3">
+                <div class="qc__block-product">
+                    <div class="qc__image_block">
+                        <div class="wImage">
+                            <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="image">
+                                <img src="  @item.Images  " alt="">
+                            </a>
+                        </div>
+                        <div class="qc__btn_ct">
+                            @if (item.Quantity == 0 || item.Quantity == null)
+                            {
+
+
+                                <a href="#" style="color:#fff;text-align:center;padding:5px;display:block;">Hết hàng</a>
+                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                            }
+                            else
+                            {
+                                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="btn_ct">mua ngay</a>
+                                <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="qc__detail">
+                        <a href="/@Item.Url/@item.Metatitle-@item.ID" data-id="@item.ID" class="btn_ct">  @item.Name  </a>
+                        <div class="qc__price" style="display:flex">
+                            @if (item.PromotionPrice == null)
+                            {
+                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+
+                            }
+                            else
+                            {
+                                <span>@(item.Price.GetValueOrDefault(0).ToString("N0"))đ</span>
+                                <span style="text-decoration:line-through;color:red;margin-left:20px">@(item.PromotionPrice.GetValueOrDefault(0).ToString("N0"))đ</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+                }
+                
+            }
+        </div>
+    </div>
+</section>
+

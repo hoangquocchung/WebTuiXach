@@ -1,0 +1,11 @@
+﻿@{ var link = (Data.FE.MenuUser)ViewBag.link;}
+<div class="banner">
+    <img src="./image/banner2.png" alt="">
+
+    <div class="container">
+        <ul class="qc_link">
+            <li><a href="/trang-chu">Home</a></li>
+            <li><a href="/@link.Url" target="@link.Target">@link.Name</a></li>
+        </ul>
+    </div>
+</div>

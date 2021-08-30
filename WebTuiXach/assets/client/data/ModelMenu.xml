@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TypeMenu>
+  <type key="1" value="menu trên header" name="menu header" />
+  <type key="2" value="menu footer" name="menu footer" />
+  <type key="3" value="menu trên đỉnh" name=" menu trên đỉnh" />
+  
+</TypeMenu>

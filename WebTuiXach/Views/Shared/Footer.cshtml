@@ -1,0 +1,63 @@
+﻿@model List<Data.FE.MenuUser>
+<footer class="qc__footer">
+    <div class="container ">
+        <div class="row ch">
+            <div class="col-12 col-md-5">
+                <div class="intro">
+                    <div class="qc__logo_footer">
+                        <div class="wImage">
+                            <a href="/trang-chu" class="image">
+                                <img src="/Style/Client/image/Logo_footer.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="qc__text_infor">
+                        <article class="qc__info">
+                            <ul>
+                                <li><strong>Địa chỉ:</strong><span>50 Trường Chinh, Đồng Hới, Quảng Bình</span></li>
+                                <li><strong>Hotline:</strong><span>0368550122</span></li>
+                                <li><strong>Email:</strong><span>infor@shesccessories.com</span></li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 menu_footer">
+                <h2 class="text_title_footer">Hỗ trợ khách hàng</h2>
+                <ul>
+                    @foreach (var item in Model.Where(x =>x.Type == 2))
+                    {
+                        <li><a href="">@item.Name</a></li>
+
+                    }
+                </ul>
+            </div>
+            <div class="col-12 col-md-4 menu_footer">
+                <h2 class="text_title_footer">kết nối với She Accessories</h2>
+                <div class="qc__warp-social">
+                    <div class="social-items">
+                        <a href="" target="_black">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </div>
+                    <div class="social-items">
+                        <a href="" target="_black">
+                            <span class="fa fa-ticktok"></span>
+                        </a>
+                    </div>
+                    <div class="social-items">
+                        <a href="" target="_black">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </div>
+                    <div class="social-items">
+                        <a href="" target="_black">
+                            <span class="fa fa-zalo"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

@@ -1,0 +1,37 @@
+﻿@model Data.FE.Product
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+    <script src="/Style/Admin/js/Controller/CkfandEdit.js"></script>
+    <script src="/Style/Admin/js/Controller/CommonAdminController.js"></script>
+    <script src="/Style/Admin/js/Controller/ProductImageController.js"></script>
+
+}
+
+@using (Html.BeginForm("Create", "test", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" }, @class = "lon" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoreImages, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.MoreImages, new { htmlAttributes = new { @class = "form-control" }, @id = "txImage" })
+            <div class="imageList"></div>
+           
+            <input type="hidden" id="hidProductID" value="0" />
+            <input type="button" id="btnChooImages" style="display: block;width: 100%;" class="btn btn-primary" value="Chọn ảnh" />
+            @Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-offset-2 btn">
+        <input type="submit" value="Create" class="btn btn-danger wrn-btn" id="btn-SaveImages"/>
+    </div>
+
+}

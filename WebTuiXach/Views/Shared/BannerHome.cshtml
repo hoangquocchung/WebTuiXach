@@ -1,0 +1,12 @@
+﻿@model List<Data.FE.Banner>
+    
+<div class="banner">
+    <div class="owl-carousel owl-theme" id="my_carousel">
+        @foreach (var item in Model.Where(x => x.TypeOfAdvID == 1 && x.Status == true))
+        {
+        <div class="item">
+            <a href="@item.URL"><img src="@item.ImageID" alt=""></a>
+        </div>
+        }
+    </div>
+</div>

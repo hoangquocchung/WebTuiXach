@@ -1,0 +1,85 @@
+﻿@model List<WebTuiXach.Models.Cart.CartItem>
+<style>
+
+    .login {
+        position: relative;
+    }
+
+        .login .a::after {
+            content: " /";
+        }
+
+    .avatar {
+        width: 49px;
+        height: 49px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 49px;
+    }
+
+        .avatar img {
+            border-radius: 49px;
+            max-width: none;
+            height: 100%;
+            position: absolute;
+        }
+    .logged-menu {
+        display: none;
+        position: absolute;
+        top: 98%;
+        left: 0;
+        padding: 5px 0;
+        z-index: 200;
+    }
+        .logged-menu ul {
+            width: 200px;
+            background: #fff;
+            box-shadow: 0 0 5px rgb(0 0 0 / 30%);
+            padding: 5px;
+        }
+    .login:hover .logged-menu {
+        display: block;
+    }
+</style>
+<div class="login">
+    @{
+        var session = (UserClient)Session[WebTuiXach.Common.ConstantsClinet.USER];
+    }
+    @if (session == null)
+    {
+        <a href="/dang-ky" class="a" style="color:#808080;text-decoration:none">Đăng ký</a>
+        <a href="/dang-nhap" style="color:#808080;text-decoration:none">Đăng nhập</a>
+    }
+    else
+    {
+        <div class="avatar"><img src="" alt="User Avatar"></div>
+        <div class="logged-menu">
+            <ul>
+                <li>Xin chào:@session.UserName</li>
+                <li><a href="/thong-tin-ca-nhan">Thông tin tài khoản</a></li>
+                <li>@Html.ActionLink("Thoát", "Logout", "User")</li>
+            </ul>
+        </div>
+    }
+</div>
+
+<div class="mobile">
+    <div class="qc_menumobile">
+        <a href="#" class="btn_search_mobile">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="qc__cart">
+        <div class="wImage">
+            <a href="/gio-hang" class="image"><img src="/Style/Client/image/cart.png" alt=""></a>
+        </div>
+        <div class="qc__cart_number">
+            @Model.Count
+        </div>
+    </div>
+    <div class="qc_menumobile">
+        <a href="#" class="btn_menu_mobile">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

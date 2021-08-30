@@ -1,0 +1,243 @@
+﻿@model Data.FE.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var sub = (List<Data.FE.MenuUser>)ViewBag.submenu;
+}
+
+@section jstop{
+
+    <link href="/Style/Admin/css/style.css" rel="stylesheet" />
+}
+@section jsFooter{
+    <script src="/Style/Admin/js/Controller/CkfandEdit.js"></script>
+    <script src="/Style/Admin/js/Controller/CommonAdminController.js"></script>
+    <script src="/Style/Admin/js/Controller/Avata.js"></script>
+    <script src="/Style/Admin/js/Controller/Quanlyanh.js"></script>
+    
+}
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-offset-2 btn">
+            <input type="submit" value="Save" class="btn btn-danger wrn-btn" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-horizontal d-flex">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="qc__trai">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" }, @class = "lon" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="wrp">
+                <label class="control-label h">Thông tin khác</label>
+                <div class="qc__block">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" }, @class = "nho" })
+                            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" }, @class = "nho" })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PromotionPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control" }, @class = "nho" })
+                            @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" }, @class = "nho" })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="qc__block">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsHome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.IsHome)
+                                @Html.ValidationMessageFor(model => model.IsHome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.Status)
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IncludeVAT, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.IncludeVAT)
+                                @Html.ValidationMessageFor(model => model.IncludeVAT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrp b2 image">
+                <label class="control-label h">Bộ ảnh</label>
+                <div class="qc__block">
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <input type="button" id="SelectImages" class="btn btn-secondary" value="Chọn ảnh" />
+                        </div>
+                        
+                        <div class="col-md-10">
+                            <div class="avata"></div>
+                            @Html.TextBoxFor(model => model.Images, new { htmlAttributes = new { @class = "form-control" }, @id = "txtImages" })
+                            <input type="file" id="fileUploads" accept="image/*" name="fileUplad" style="display:none" />
+                            @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="qc__block">
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(model => model.MoreImages, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <input type="button" id="SelectImage" class="btn btn-secondary" style="width:100%" value="chọn ảnh" />
+                        </div>
+                        
+                        <div class="col-md-10">
+                            <div class="imageList"></div>
+                            @Html.TextBoxFor(model => model.MoreImages, new { htmlAttributes = new { @class = "form-control" }, @id = "txtImage" })
+                            <input type="file" id="fileUpload" accept="image/*" name="fileUplad" style="display:none" /> <!--Hiển thị hộp thoại thư mục từ máy tính-->
+                            @Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrp d-block">
+                <div class="qc__block">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" }, @class = "lon" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wrp b2 d-block">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, @id = "txtContent2" })
+                        @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="wrp d-block">
+                <div class="qc__block">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Warranty, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" }, @class = "lon" })
+                            @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrp b2 d-block">
+                <div class="qc__block">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MetaKeywords, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.MetaKeywords, new { htmlAttributes = new { @class = "form-control" }, @class = "lon" })
+                            @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="qc__phai">
+            <div class="submenu">
+                <span class="title">Danh sách sản phẩm</span>
+                <ul>
+                    @foreach (var item in sub.Where(x => x.Level == 1 && x.FrameViewID == 2))
+                    {
+                        <li>
+                            <input type="checkbox" class="btn_check" data-id="@item.ID" value="@item.ID" /> @item.Name
+                            <ul>
+                                @foreach (var item2 in sub.Where(x => x.Level == 2))
+                                {
+                                    if (item2.ParentID == item.ID)
+                                    {
+                                        <li>
+                                            <input type="checkbox" class="btn_check" data-id="@item2.ID" value="@item2.ID" /> @item2.Name
+                                            <ul>
+                                                @foreach (var item3 in sub.Where(x => x.Level == 3))
+                                                {
+                                                    if (item3.ParentID == item2.ID)
+                                                    {
+                                                        <li>
+                                                            <input type="checkbox" class="btn_check" data-id="@item3.ID" value="@item3.ID" /> @item3.Name
+                                                        </li>
+                                                        @*@if (item3.ID.ToString().Contains("")) { 'checked' }*@
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+                                    }
+
+                                }
+
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 phai">
+                    @Html.TextBoxFor(model => model.CategoryID, new { htmlAttributes = new { @class = "form-control" }, @id = "ParentID" })
+                    @Html.TextBoxFor(model => model.MainMenu, new { htmlAttributes = new { @class = "form-control" }, @id = "MainMenu" })
+                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 btn">
+            <input type="submit" value="Create" class="btn btn-danger wrn-btn" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

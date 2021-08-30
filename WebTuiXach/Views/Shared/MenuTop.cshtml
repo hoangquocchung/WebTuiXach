@@ -1,0 +1,34 @@
+﻿@model List<Data.FE.MenuUser>
+<nav class="qc__nav">
+    <ul>
+        @foreach (var item in Model.Where(x => x.Level == 1 && x.Type == 1).OrderBy(x => x.ID))
+        {
+            <li>
+                <a href="/@item.Url">@item.Name</a>
+
+                <ul class="submenu">
+                    @foreach (var Item in Model.Where(x => x.Level == 2 && x.Type == 1 && x.ParentID == item.ID))
+                    {
+                    <li>
+                        <a href="/@Item.Url"> @Item.Name</a>
+                        <ul class="sub2">
+                            @foreach (var subtem in Model.Where(x => x.Level == 3 && x.Type == 1 && x.ParentID == Item.ID))
+                            {
+                                <li>
+                                    <a href="/@subtem.Url"> @subtem.Name</a>
+                                </li>
+                            }
+                            </ul>
+                    </li>
+                    }
+                </ul>
+            </li>
+        }
+
+        @*<li><a href="">Ví Bóp</a></li>
+            <li><a href="">Kính mắt</a></li>
+            <li><a href="">Phụ kiện</a></li>
+            <li><a href="">SaleOff</a></li>
+            <li><a href="">Tin tức</a></li>*@
+    </ul>
+</nav>

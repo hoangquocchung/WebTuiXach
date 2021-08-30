@@ -1,0 +1,106 @@
+﻿@model List<Data.FE.MenuUser>
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+    <script src="/Style/Admin/js/Controller/MenuUser.js"></script>
+}
+<h2>Danh mục Tin tức</h2>
+@using (Html.BeginForm("Index", "Menu", FormMethod.Post))
+{
+    <div class="row qc__search">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <input type="text" class="form-control search-slt" value="@ViewBag.ChuoiTimKiem" placeholder="nhập cần tìm kiếm..." name="searchString">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control search-slt" id="exampleFormControlSelect1">
+                        <option>Select Vehicle</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <input type="submit" class="btn btn-danger wrn-btn" value="Search" />
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <a href="/Admin/Menu/Create" class="btn btn-danger wrn-btn">
+                        Create
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Url</th>
+            <th scope="col">Level</th>
+            <th>Status</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(x => x.FrameViewID == 3 && x.Type == 1))
+        {
+            <tr data-id="tr_@item.ID">
+                <th scope="row">@item.ID</th>
+                <td>@item.Name</td>
+                <td>@item.Url</td>
+                <td>@item.Level</td>
+                <td><input type="checkbox" class="ch" data-id="@item.ID" checked="@(item.Satus)" /> </td>
+                <td>
+                    <a href="/Admin/Menu/Edit/@item.ID"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="#" class="btn_delete" data-id="@item.ID"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (ViewBag.TotalPage > 1)
+{
+    var pageDisplay = (int)(ViewBag.MaxPage);
+    int totalPage = (int)ViewBag.TotalPage;
+    int currentPage = ((int)ViewBag.Page);
+    //Create number links
+    var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+    var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+    var link = "/Admin/Menu/MenuArticle";
+    <ul class="pagination">
+        @if (currentPage > ViewBag.First)
+        {
+            <li class="page-item"> <a class="page-link" href="@link?page=@ViewBag.First">&laquo;</a> </li>
+            <li class="page-item"> <a class="page-link" href="@link?page=@ViewBag.Prev">&lsaquo;</a> </li>
+        }
+        @for (int i = startPageIndex; i <= endPageIndex; i++)
+        {
+            if (currentPage == i)
+            {
+                <li class="page-item"><a class="page-link" href="@link?page=@i" title="Trang @i">@i</a></li>
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="@link?page=@i" title="Trang @i">@i</a></li>
+            }
+
+        }
+        @if (currentPage < totalPage)
+        {
+            <li class="page-item"> <a class="page-link" href="@link?page=@ViewBag.@ViewBag.Next">&rsaquo;</a> </li>
+            <li class="page-item"> <a class="page-link" href="@link?page=@ViewBag.Last">&raquo;</a> </li>
+        }
+    </ul>
+}
+
+

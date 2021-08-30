@@ -1,0 +1,188 @@
+﻿@model List<WebTuiXach.Models.Cart.CartItem>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconcert" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/Style/Client/css/lib/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/Style/Client/css/lib/font-awesome.css">
+    <link rel="stylesheet" href="/Style/Client/css/Cart.css">
+</head>
+<body>
+    <header class="car_header">
+        <div class="container">
+            <div class="header_back">
+                <div class="bnt_back">
+                    <a href="/">
+                        Mua thêm sản phẩm khác
+                    </a>
+                </div>
+                <div class="logo_checkout">
+                    <a href="/">
+                        <img src="/Style/Client/image/Logo_header.png" alt="">
+                    </a>
+                </div>
+                <div class="login"></div>
+            </div>
+        </div>
+    </header>
+    <main>
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
+                @TempData["AlertMessage"]
+            </div>
+        }
+        <section class="main">
+            @if (Model.Count() > 0)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-7">
+                            <div class="block_product">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="product">
+                                        <div class="btn_delete" data-id="@item.product.ID">
+                                            <span>Xóa</span>
+                                        </div>
+                                        <div class="block_image">
+                                            <div class="wImage">
+                                                <div class="image">
+                                                    <img src="@item.product.Images" alt="@item.product.Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="info" style="width: 200px;">
+                                            <span>@item.product.Name</span>
+                                            <span>Size:0S</span>
+                                            <span>màu:PIK</span>
+                                        </div>
+                                        <div class="quantity">
+                                            <input type="number" min="1" class="input_quantity" data-id="@item.product.ID" name="0" value="@item.Quantity">
+                                            <button type="submit" class="btn_quantity">Cập nhật</button>
+                                        </div>
+                                        <div class="price" style="display:flex;width: 150px;">
+                                            @if (item.product.PromotionPrice == null)
+                                            {
+                                                <span>@item.product.Price.GetValueOrDefault(0).ToString("N0") đ</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@item.product.Price.GetValueOrDefault(0).ToString("N0") đ</span>
+                                                <span style="margin-left: 7px">@item.product.PromotionPrice.GetValueOrDefault(0).ToString("N0") đ</span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+
+
+
+
+                            </div>
+                            <div class="sum_price">
+                                <div class="gia thanhtien">
+                                    <span>Thành tiền</span>
+                                    <span>@Model.Sum(x => (x.product.Price.GetValueOrDefault(0)) * x.Quantity).ToString("N0") đ</span>
+                                </div>
+                                <div class="gia gg">
+                                    <span>giảm giá</span>
+                                    <span>0đ</span>
+                                </div>
+                                <div class="gia tongtien">
+                                    <span>Tổng tiền</span>
+                                    <span> đ</span>
+                                </div>
+                            </div>
+                            <div class="giangia">
+                                <div class="magiamgia">
+                                    <span>Mã giảm giá</span>
+                                    <div style="display: flex;justify-content: space-between;">
+                                        <input type="text" class="txtgiamgia" placeholder="Nhập mã">
+                                        <input type="submit" class="btngiam" value="Áp dụng">
+                                    </div>
+                                </div>
+                                <div class="lienhe">
+                                    <span>Gọi <span style="color: red;">1800 6050</span> để đặt hàng nhanh</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <div class="block_pay">
+                                <div class="title">
+                                    <h2>NHẬP THÔNG TIN NHẬN HÀNG</h2>
+                                </div>
+                                @using (Html.BeginForm("Index", "Cart", FormMethod.Post))
+                                {
+                                    <div class="form_input">
+                                        <div class="title_input">
+                                            <span class="input_text">Họ Tên (*):</span>
+                                        </div>
+                                        <input type="text" name="shipName" class="form-control" placeholder="người nhận hàng (bắt buộc)">
+                                    </div>
+                                    <div class="form_input">
+                                        <div class="title_input">
+                                            <span class="input_text">Phone (*):</span>
+                                        </div>
+                                        <input type="text" name="mobile" class="form-control" placeholder="Số điện thoại (bắt buộc)">
+                                    </div>
+                                    <div class="form_input">
+                                        <div class="title_input">
+                                            <span class="input_text">Địa chỉ (*):</span>
+                                        </div>
+                                        <input type="text" name="address" class="form-control" placeholder="địa chỉ(bắt buộc)">
+                                    </div>
+                                    <div class="form_input">
+                                        <div class="title_input">
+                                            <span class="input_text">Email (*):</span>
+                                        </div>
+                                        <input type="text" name="email" class="form-control" placeholder="(Không bắt buộc)">
+                                    </div>
+                                    <div class="form_input">
+
+                                        <textarea name="textnote" class="form-control" placeholder="Ghi chú thêm (nếu có)"></textarea>
+                                    </div>
+                                    <div class="title">
+                                        <h2>CHỌN CÁCH THANH TOÁN</h2>
+                                    </div>
+                                    <div class="paypal">
+                                        <button class="btn thanhtoan" type="submit" name="Payment">
+                                            <span>Thanh toán</span>
+                                            <span>khi nhận hàng</span>
+                                        </button>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a href="/">Quay lai thêm sản phẩm</a>
+            }
+
+        </section>
+    </main>
+    <!-- jquery is file-->
+    <script src="/Style/Client/js/jquery-3.5.1.js"></script>
+    <!-- bootstrap is file-->
+    <script src="/Style/Client/js/lib/bootstrap.min.js"></script>
+    <script src="/Style/Client/js/Controller/CartControler.js"></script>
+    <script>
+        $(function () {
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(2000).slideUp(500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quốc chung - Thiết kế website chuyên nghiệp</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
+    <meta name="theme-color" content="#fff" />
+
+    <link rel="stylesheet" href="/Style/Client/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Style/Client/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="preconcert" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/Style/Client/css/lib/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/Style/Client/css/lib/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/Style/Client/css/header.css">
+    <link href="/Style/Client/css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+    <!--HEADER-->
+    <header class="qc__header">
+        <div class="container">
+            <div class="header">
+                <div class="qc__header_top">
+                    <div class="logo"><a href="/"><img src="/Style/Client/image/Logo_header.png" alt=""></a></div>
+                    <div class="qc__form_search">
+                        <div class="qc__form_search">
+                            <form action="/tim-kiem" method="get" class="formsearch">
+                                <div class="qc__form">
+                                    <input type="text" name="keyword" class="qc__search textsearch" placeholder="tìm kiếm ...">
+                                    <button type="submit" class="qc__btn_search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    @{Html.RenderAction("_Cart", "Home");}
+                </div>
+                <div class="qc__header_menu">
+                    <div class="qc__main_header_top">
+                        <div class="close">
+                            <img src="/Style/Client/image/close1.png" />
+                        </div>
+                    </div>
+                    @{Html.RenderAction("MenuTop", "Home"); }
+
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+    @{Html.RenderAction("BannerHome", "Home"); }
+    @RenderBody()
+    <!--FOOTER-->
+    @{Html.RenderAction("Footer", "Home"); }
+    <div class="qc__web_chung">
+        <p>2021 bản quyền thuộc về She Accessories | Thiết kế website bởi Hoàng Quốc Chung</p>
+    </div>
+
+    <!-- jquery is file-->
+    <script src="/Style/Client/js/lib/jquery.min.js"></script>
+    <!-- bootstrap is file-->
+    <script src="/Style/Client/js/lib/bootstrap.min.js"></script>
+    <script src="/Style/Client/owlcarousel/owl.carousel.js"></script>
+    <script src="/Style/Client/Controller/ViewCountProduct.js"></script>
+    <script src="/Style/Client/js/common.js"></script>
+    <script src="/Style/Client/js/Controller/QandA.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    @RenderSection("jsFooter", required: false)
+</body>
+@*<script>
+	$(document).ready(function(){
+		$('#my_carousel').owlCarousel({
+					items:1,
+                    loop:true,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    autoplayTimeout: 10000,
+                    nav:false,
+                    dots: true,
+                    margin: 30,
+                    responsiveClass:true,
+
+                });
+		$('#my_carousel2,#my_carousel3').owlCarousel({
+                    loop:true,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    autoplayTimeout: 10000,
+                    nav:true,
+                    dots: false,
+                    margin:30,
+                    responsiveClass:true,
+					responsive:{
+						0:{
+                            items:1,
+                        },
+                        600:{
+                            items:3,
+                        },
+                        1000:{
+                            items:4,
+                        }
+					}
+
+                });
+
+	// button next,prev
+		$('.owl-next span').html('<i class="fa fa-arrow-circle-right" style="font-size:30px;transition:ease .5s" aria-hidden="true"></i>')
+		$('.owl-prev span').html('<i class="fa fa-arrow-circle-left" style="font-size:30px;transition:ease .5s" aria-hidden="true"></i>')
+	})
+</script>*@
+</html>

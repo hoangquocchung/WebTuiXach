@@ -1,0 +1,139 @@
+﻿@model Data.FE.Product
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var url = (Data.FE.MenuUser)ViewBag.menu;
+    var productrelate = (List<Data.FE.Product>)ViewBag.productrelate;
+}
+<div class="banner">
+    <img src="/Style/Client/image/banner2.png" />
+
+    <div class="container">
+        <ul class="qc_link">
+            <li><a href="">Home</a></li>
+            <li><a href="/@url.Url">@url.Name</a></li>
+        </ul>
+    </div>
+</div>
+<section class="qc__productDetaile">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="block_avata">
+                    <div class="wImage">
+                        <div class="image">
+                            <img src="@Model.Images" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row"></div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="qc__product_info">
+                    <h1 class="qc__title">@Model.Name</h1>
+                    <!--giá-->
+                    <div class="pri">
+                        @if (Model.PromotionPrice == null)
+                        {
+                            <span class="qc__price">@Model.Price.GetValueOrDefault(0).ToString("N0") ₫</span>
+                        }
+                        else
+                        {
+                            <span class="qc__price">@Model.Price.GetValueOrDefault(0).ToString("N0") ₫</span>
+                            <span class="qc__promotionPrice">@Model.PromotionPrice.GetValueOrDefault(0).ToString("N0") ₫</span>
+                        }
+
+                    </div>
+                    <!--Màu sắc-->
+                    <div class="qc__productcolor">
+                        <div class="title-attr">Màu</div>
+                        <div class="check_color">
+                            <input type="radio" name="" value="" id="">
+                            <input type="radio" name="" value="" id="">
+                        </div>
+                    </div>
+                    <!-- số lượng -->
+                    <div class="group-attr quantity cus-quantity">
+                        <div class="title-attr">Số lượng</div>
+                        <div class="book-number">
+                            <div class="item-change minus">-</div>
+                            <div class="input-number">
+                                <input value="1" id="fquantity" onkeyup="if(/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                            </div>
+                            <div class="item-change plus">+</div>
+                        </div>
+                    </div>
+                    @if (Model.Quantity <= 0 || Model.Quantity == null)
+                    {
+                        <div class="btn buy_now">Hết hàng</div>
+                    }
+                    else
+                    {
+                        <a href="/them-gio-hang?productId=@Model.ID&quantity=1" class="btn buy_now">Mua ngay</a>
+                    }
+
+                    <span class="free_ship">Miễn phí giao hàng toàn quốc</span>
+                    <div class="qc__tab_title">
+                        <ul class="qc__nav nav nav-pills">
+                            <li ><a href="#2b" class="active show" data-toggle="tab">Chi tiết</a></li>
+                            <li><a class="" href="#bohet" data-toggle="tab">Mô tả sản phẩm</a></li>
+                            
+                        </ul>
+                        <div class="tab_content">
+                            <div class="tab-pane  active" id="2b">
+                                <div class="description-productdetail">
+                                    @Html.Raw(Model.Detail)
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="bohet">
+                                <div class="description-productdetail">
+                                    @Html.Raw(Model.Description)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="qc__product qc__related">
+    <div class="container">
+        <div class="qc__title">
+            <h2 class="title">Sản phẩm liên quan</h2>
+
+        </div>
+        <div class="product__related qc__new__product">
+            <div class="owl-carousel owl-theme product" id="my_carousel2">
+                @foreach (var item in productrelate)
+                {
+                    <div class="item">
+                        <div class="qc__block-product">
+                            <div class="qc__image_block">
+                                <div class="wImage">
+                                    <a href="/@item.Metatitle/@item.ID" data-id="@item.ID" class="image">
+                                        <img src="@item.Images" alt="@item.Name">
+                                    </a>
+                                </div>
+                                <div class="qc__btn_ct">
+                                    <a href="" class="btn_ct">mua ngay</a>
+                                    <a href="/@item.Metatitle/@item.ID" data-id="@item.ID" class="btn_ct">chi tiết</a>
+                                </div>
+                            </div>
+                            <div class="qc__detail">
+                                <a href="/@item.Metatitle/@item.ID" data-id="@item.ID" class="btn_ct">@item.Name</a>
+                                <div class="qc__price">
+
+                                    <span>@item.Price.GetValueOrDefault(0).ToString("N0") đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+

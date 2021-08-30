@@ -1,0 +1,184 @@
+:root{
+    --black:#000;
+    --white:#fff;
+    --default-color1: #f36969;
+    --default-color2: #d8d8d8;
+    --default-color3: #a3a3a3;
+    --default-color4:#debea8;
+
+    --font-size255:15.938rem;
+}
+html{
+    background: rgb(155, 155, 155);
+}
+body{
+    padding: 0;
+    margin: 0;
+    height: auto;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6c757d;
+    background: rgb(226, 226, 226);
+}
+.wImage .image{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.image img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.car_header, .block_product,.giangia{
+    margin-bottom: 20px;
+    background: var(--white);
+}
+.header_back {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px 15px 5px;
+}
+.bnt_back a {
+    font-size: 1.2rem;
+    color: var(--default-color1);
+    text-decoration: none;
+}
+.login {
+    width: 200px;
+    text-align: right;
+}
+/*================================*/
+.block_pay{
+    border: 2px solid var(--default-color1);
+    width: 100%;
+    min-height: 20px;
+    padding: 15px;
+}
+.block_pay .title h2{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+.form_input{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form_input .title_input{
+    flex: 0 0 auto;
+    margin-right: 10px;
+}
+.form_input .form-control{
+    outline: none;
+}
+
+.btn{
+    border-radius: 5px;
+    border: none;
+    background: var(--default-color1);
+    width: 100%;
+    padding: 5px;
+    color: var(--white);
+    font-size: 1rem;
+}
+.btn span:nth-child(1){
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+/*========== trái ==========*/
+.product {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+.block_image .wImage{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+.info span{
+    display: block;
+}
+.info span:nth-child(1){
+    color: #43484d;
+    font-weight: 600;
+}
+.btn_delete {
+    padding: 15px;
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+.btn_delete:hover{
+    color: var(--default-color1);
+}
+.quantity{
+    margin: 0 15px;
+    width: 70px;
+}
+.quantity input {
+    border: 1px solid var(--default-color1);
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    font-size: .8em;
+    color: #43484d;
+    font-weight: 300;
+    left: 50%;
+    transform: translate(-50%);
+    position: relative;
+    margin-bottom: 10px;
+    
+}.quantity button{
+    width: 100%;
+    font-size: 0.8rem;
+    background: var(--default-color1);
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;;
+}
+.price{
+    margin-right: 5px;
+}
+.price span:nth-child(2){
+    color: #cc2b2b;
+    text-decoration: line-through;
+}
+/*=========================*/
+.magiamgia{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+.magiamgia div input {
+    margin-right: 20px;
+    border: 1px solid #6c757d;
+    background: var(--white);
+    padding: 10 15px;
+    height: 40px;
+    color: #6c757d;
+}
+.magiamgia div input.btngiam{
+    cursor: pointer;
+}
+.lienhe{
+    text-align: center;
+    font-size: 20px;
+}
+.gia{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}

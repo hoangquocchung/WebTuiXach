@@ -1,0 +1,154 @@
+ul{
+    margin:0px;
+    padding:0;
+}
+ul li{
+    list-style: none;
+}
+.submenu ul li {
+    margin-left: 25px;
+}
+th,td{
+    text-align: center;
+}
+.row.qc__search{
+    margin-bottom:20px;
+    margin-left: 50px;
+}
+#content h2 {
+    text-align: center;
+    text-transform: uppercase;
+}
+.table {
+    padding:0 50px
+}
+.search-sec {
+    padding: 2rem;
+}
+
+.search-slt {
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius: 0;
+}
+
+.wrn-btn {
+    width: 50%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius: 0;
+    line-height: 37px
+}
+
+.btn-danger {
+    background: #284fc2;
+}
+
+.qc__trai {
+    flex: 0 0 calc(100% - 310px);
+    border: 1px solid #f7f7f7;
+    margin-right: 20px
+}
+
+.qc__phai {
+    flex: 0 0 calc(100% - 310px);
+    border: 1px solid #f7f7f7;
+    background: #f2f2f2;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.qc__phai .title{
+    color: #000;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight:600
+}
+
+.control-label {
+    color: #000;
+    font-weight: 600;
+    display: block;
+}
+
+.qc__trai .wrp {
+    display: flex;
+    background: #fff;
+    padding: 20px 0 5px 0;
+}
+
+.wrp.b2 {
+    background: #f2f2f2;
+}
+
+.qc__block {
+    border-left: 1px solid #f2f2f2;
+}
+
+    .qc__block .control-label {
+        font-weight: 400
+    }
+
+.control-label.h {
+    width: 15%;
+    padding-left: .77%;
+}
+
+.form-group {
+    display: flex;
+}
+
+input.nho {
+    width: 150px
+}
+
+.lon {
+    width: 100%;
+}
+
+.col-md-10 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.col-md-offset-2.btn {
+    width: 30%
+}
+.col-md-10.phai{
+    display: block
+}
+
+#txtImages, #txtImage, #ParentID, #MainMenu {
+    display: none;
+}
+.imageList {
+    display: flex;
+}
+.btn-delImages{
+    position:absolute;
+    left:0;
+    
+}
+.avata{
+    width:70px;
+    height:70px;
+    background:#fff;
+}
+.wrp.image .col-md-10 {
+    flex: 0 0 0%;
+}
+.qc__khung {
+    display: flex;
+    flex-wrap: wrap;
+}
+.qc__khung .form-group {
+    width: 50%;
+}
